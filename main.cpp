@@ -31,9 +31,6 @@ int main()
 	alignment.PrintScoringMatPretty();
 	alignment.PrintTracebackMatPretty();
 
-	string resultA = alignment.GetResultA();
-	string resultB = alignment.GetResultB();
-
 	alignment.PrintAlignment();
 
 	return 0;
