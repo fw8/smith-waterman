@@ -23,16 +23,17 @@ AB-D
 ABCD
 ```
 
-In der Matrix steht s1 für die Zeilen und s2 für die Spalten. Zusammen mit dem gewählten Pfad sieht das dann so aus:
+In der Matrix steht s1 für die Spalten und s2 für die Zeilen. Zusammen mit dem gewählten Pfad sieht das dann so aus:
 
 ```text
-  ABCD
+  ABD
 A D
-B  DL
-D    D
+B  D
+C  U
+D   D
 ```
 
-Immer wenn man sich in der Matrix nach links bewegt, gibt es einen Stillstand in s1 und dabei wird in s2 ein Zeichen (hier C) übersprungen, was einer Löschung in s2 entspricht.
+Immer wenn man sich in der Matrix nach oben bewegt, gibt es einen Stillstand in s1 und dabei wird in s2 ein Zeichen (hier C) übersprungen, was einer Löschung in s2 entspricht.
 
 Der Umgekehrte Fall tritt bei folgenden Squenzen ein:
 
@@ -51,16 +52,15 @@ AB-D
 Die Matrix mit Pfad kann dann so aussehen:
 
 ```text
-  ABD
+  ABCD
 A D
-B  D
-C  U
-D   D
+B  DL
+D    D
 ```
 
-Durch die Bewegung nach oben, gibt es in s2 einen Stillstand, während man sich in s1 weiter bewegt. Dies entspricht dem Einfügen (hier C) eines Zeichens...
+Durch die Bewegung nach links, gibt es in s2 einen Stillstand, während man sich in s1 weiter bewegt. Dies entspricht dem Einfügen (hier C) eines Zeichens...
 
 Daher gilt:
 
-* **horizontale** Bewegung = **Löschung**,
-* **vertikale** Bewegung = **Einfügung**
+* **vertikale** Bewegung = **Löschung**,
+* **horizontale** Bewegung = **Einfügung**
