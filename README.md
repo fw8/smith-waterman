@@ -46,6 +46,7 @@ Hier muss ein Zeichen (C) eingefügt werden um zu einem möglichen Ziel zu gelan
 
 ```text
 ABCD
+|| |
 AB-D
 ```
 
