@@ -96,7 +96,7 @@ void Alignment::TraceBack()
 	size_t r,c;
 	char z,charA,charB;
 
-  F.MaxPos(r,c);
+	F.MaxPos(r,c);
 
 	// cout << "max pos: " << r << ", " << c << " = " << F.At(r,c) << endl;
 
