@@ -45,7 +45,7 @@ void Alignment::CalcCell(int r, int c)
 	int f1,f2,f3,f;
 	char z='x';
 
-//cout << r << "," << c << endl;
+	//cout << r << "," << c << endl;
 
 	// Erst die zwei Spezialfaelle abhandel (Rand)...
 	if ((r == 0) || (c == 0)) {
