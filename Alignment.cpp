@@ -40,53 +40,52 @@ int Alignment::Score(char a, char b)
 	}
 }
 
-void Alignment::CalcCell(int i, int j)
+void Alignment::CalcCell(int r, int c)
 {
 	int f1,f2,f3,f;
 	char z='x';
 
-//cout << i << "," << j << endl;
+//cout << r << "," << c << endl;
 
 	// Erst die zwei Spezialfaelle abhandel (Rand)...
-	if ((i == 0) || (j == 0)) {
+	if ((r == 0) || (c == 0)) {
 		f = 0;
 
 	} else { // Dann den normalen Rekursionsschritt durch Rückgriff auf schon berechnete Zellen
 
-		// Achtung! seqA[i-1] ist das i-te Element der Zeichenkette seqA (weil seqA[1] das erste ist!)
-		// Die Matrix hat bei (0,0) eine Zeile/Spalte mehr!
-		f1 = F.At(i-1,j-1) + Score(seqA[j-1],seqB[i-1]); // Match/Missmatch
-		f2 = F.At(i-1,j) + gapPenalty; // Loeschung
-		f3 = F.At(i,j-1) + gapPenalty;  // Einfuegung
+		// Achtung! seqA[c-1] weil die Matrix bei (0,0) eine Spalte/Zeile mehr hat, die Sequenz aber nicht.
+		f1 = F.At(r-1,c-1) + Score(seqA[c-1],seqB[r-1]); // Match/Missmatch
+		f2 = F.At(r-1,c) + gapPenalty; // Loeschung (vertikale Bewegung)
+		f3 = F.At(r,c-1) + gapPenalty;  // Einfuegung (horizontale Bewegung)
 
 		// Maximum der drei (vier) Varianten ermitteln
 		f = max((max(max(f1,f2),f3)),0);
 
 		// Zeiger entsprechend dem gefundenen Maximum setzten
 
-		if (f==f2) {z='L';}
-		if (f==f3) {z='U';}
+		if (f==f2) {z='U';}
+		if (f==f3) {z='L';}
 		if (f==f1) {z='D';} // nach hinten damit D bei Gleichstand gewinnt!
 
 		//cout << "f1,2,3 = (" << f1 << "),(" << f2 << "),(" << f3 << ")" << endl;
-		//cout << "m=" << m << " -> " << d << endl << endl;
+		//cout << "f=" << f << " -> " << z << endl << endl;
 
-		//F.SetValue(i,j,-1);
+		//F.SetValue(r,c,-1);
 		//PrintScoringMatPretty();
 
 	}
 
-	F.SetValue(i,j,f);
-	Z.SetValue(i,j,z);
+	F.SetValue(r,c,f);
+	Z.SetValue(r,c,z);
 }
 
 void Alignment::FillMats()
 {
 	// Zeilen und Spaltenweise die Zellen berechnen (iterativ!)
-	for (int i = 0; i < (seqB.size()+1); i++) {
-		for (int j = 0; j < (seqA.size()+1); j++) {
-			CalcCell(i,j);
-			// cout << "berechne " << i << "," << j << " "
+	for (int r = 0; r < F.GetNumRows(); r++) {
+		for (int c = 0; c < F.GetNumCols(); c++) {
+			CalcCell(r,c);
+			// cout << "berechne " << r << "," << c << " "
 		}
 	}
 
@@ -94,26 +93,26 @@ void Alignment::FillMats()
 
 void Alignment::TraceBack()
 {
-	size_t i,j;
+	size_t r,c;
 	char z,charA,charB;
 
-  F.MaxPos(i,j);
+  F.MaxPos(r,c);
 
-	// cout << "max pos: " << i << ", " << j << " = " << F.At(i,j) << endl;
+	// cout << "max pos: " << r << ", " << c << " = " << F.At(r,c) << endl;
 
-	while (F.At(i,j) != 0) {
+	while (F.At(r,c) != 0) {
 
-		z = Z.At(i,j);
+		z = Z.At(r,c);
 
 		if (z == 'L') {
-			charA = seqA[j-1]; charB = '-';
-			j--;
+			charA = seqA[c-1]; charB = '-';
+			c--;
 		} else if (z == 'U') {
-			charA = '-'; charB = seqB[i-1];
-			i--;
+			charA = '-'; charB = seqB[r-1];
+			r--;
 		} else if (z == 'D') { // Eigentlich einzige moegliche Variante!?
-			charA = seqA[j-1]; charB = seqB[i-1];
-			j--; i--;
+			charA = seqA[c-1]; charB = seqB[r-1];
+			r--; c--;
 		} else {
 			// ende
 			break;
