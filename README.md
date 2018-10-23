@@ -23,7 +23,7 @@ AB-D
 ABCD
 ```
 
-In der Matrix steht s1 für die Zeilen und s2 fü die Spalten. Zusammen mit dem gewählten Pfad sieht das dann so aus:
+In der Matrix steht s1 für die Zeilen und s2 für die Spalten. Zusammen mit dem gewählten Pfad sieht das dann so aus:
 
 ```text
   ABCD
@@ -32,7 +32,7 @@ B  DL
 D    D
 ```
 
-Immer wenn man sich in der Matrix nach links bewegt, gibt es einen Stillstand in s1 und damit eine Lücke in s2, was einer Löschung in s2 entspricht, da das Zeichen (hier C) übersprungen wird.
+Immer wenn man sich in der Matrix nach links bewegt, gibt es einen Stillstand in s1 und dabei wird in s2 ein Zeichen (hier C) übersprungen, was einer Löschung in s2 entspricht.
 
 Der Umgekehrte Fall tritt bei folgenden Squenzen ein:
 
