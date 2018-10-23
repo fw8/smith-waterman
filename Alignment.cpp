@@ -3,11 +3,10 @@ Labor Medizinische Informatik
 Studiengang Medizintechnik
 Hochschule Pforzheim
 *******************************************************************************
-Datei:				Alignment.cpp
-Autoren:			Sascha Seifert, Max Barchet, Joachim Storz
-Letzte �nderung:	03.09.2018
-Beschreibung:		Klasse zur Berechnung eines Alignements
-					Template f�r Studierende
+Datei:		Alignment.cpp
+Autoren:	Sascha Seifert, Max Barchet, Joachim Storz, Carlotta Rödling
+Letzte Änderung:23.10.2018
+Beschreibung:	Klasse zur Berechnung eines Alignements
 ******************************************************************************/
 
 #include "Alignment.h"
