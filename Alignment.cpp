@@ -85,7 +85,7 @@ void Alignment::FillMats()
 	for (int r = 0; r < F.GetNumRows(); r++) {
 		for (int c = 0; c < F.GetNumCols(); c++) {
 			CalcCell(r,c);
-			// cout << "berechne " << r << "," << c << " "
+			// cout << "berechne Zelle " << r << "," << c << " " << endl;
 		}
 	}
 
@@ -104,13 +104,13 @@ void Alignment::TraceBack()
 
 		z = Z.At(r,c);
 
-		if (z == 'L') {
+		if (z == 'L') { // Zeiger nach links (Lücke in resultB)
 			charA = seqA[c-1]; charB = '-';
 			c--;
-		} else if (z == 'U') {
+		} else if (z == 'U') { // Zeiger nach oben (Lücke in resultA)
 			charA = '-'; charB = seqB[r-1];
 			r--;
-		} else if (z == 'D') { // Eigentlich einzige moegliche Variante!?
+		} else if (z == 'D') { // Zeiger nach linksoben
 			charA = seqA[c-1]; charB = seqB[r-1];
 			r--; c--;
 		} else {
